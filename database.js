@@ -51,6 +51,13 @@ async function insertUser(user) {
     await client.query(sql, values);
 }
 
+async function updateUser(id, user) {
+    const client = await connect();
+    const sql = "UPDATE usuarios SET nome=$1, idade=$2, uf=$3 WHERE id=$4";
+    const values = [user.nome, user.idade, user.uf, id]
+    await client.query(sql, values);
+}
 
 
-export { selectUsers, selectUser, insertUser };
+
+export { selectUsers, selectUser, insertUser, updateUser };
