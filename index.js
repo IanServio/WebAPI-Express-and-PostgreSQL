@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-import { selectUsers, selectUser, insertUser, updateUser } from './database.js';
+import { selectUsers, selectUser, insertUser, updateUser, deleteUser } from './database.js';
 
 const port = process.env.PORT;
 
@@ -35,6 +35,10 @@ app.patch("/users/:id", async (req, res)=>{
     res.sendStatus(200);
 });
 
+app.delete("/users/:id", async (req, res)=>{
+    await deleteUser(req.params.id)
+    res.sendStatus(204);
+});
 
 app.listen(port)
 

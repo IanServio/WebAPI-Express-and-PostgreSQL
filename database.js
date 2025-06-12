@@ -58,6 +58,12 @@ async function updateUser(id, user) {
     await client.query(sql, values);
 }
 
+async function deleteUser(id) {
+    const client = await connect();
+    const sql = "DELETE FROM usuarios WHERE id=$1";
+    const values = [id]
+    await client.query(sql, values);
+}
 
 
-export { selectUsers, selectUser, insertUser, updateUser };
+export { selectUsers, selectUser, insertUser, updateUser, deleteUser };
